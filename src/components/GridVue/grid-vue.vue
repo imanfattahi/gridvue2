@@ -66,8 +66,8 @@
           paginate: {
             status: true,
             perPage: 10,
-            perPageValues: [5, 10, 20 ,50 , 100],
             perPageSelectable: true,
+            perPageValues: [5, 10, 20 ,50 , 100],
             totalPage: 0,
             total: 0,
             currentPage: 1

@@ -1,6 +1,6 @@
 {
   "name": "gridvue2",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "private": false,
   "main": "./dist/gridvue2.common.js",
   "module": "./dist/gridvue2.esm.js",
