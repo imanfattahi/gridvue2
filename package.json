@@ -1,6 +1,6 @@
 {
   "name": "gridvue2",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "private": false,
   "main": "./dist/gridvue2.common.js",
   "module": "./dist/gridvue2.esm.js",
@@ -15,6 +15,15 @@
     "lint": "vue-cli-service lint",
     "build-bundle": "vue-cli-service build --target lib --name gridvue2 ./src/main.js"
   },
+  "keywords": [
+    "gridview",
+    "gridvue",
+    "table",
+    "data-table",
+    "ajax-table",
+    "searchable"
+  ],
+  "author": "Iman Fattahi <imanfava@gmail.com>",
   "dependencies": {
     "vue": "^2.5.21"
   },

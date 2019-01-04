@@ -6,7 +6,7 @@ npm install --save gridvue2
 ```
 
 ### Basic Usage
-Add this lines on top of your main.js 
+Add this lines on top of your main.js:
 ``` js
 import Vue from 'vue'
 import GridVue2 from 'gridvue2'
@@ -14,7 +14,7 @@ import GridVue2 from 'gridvue2'
 Vue.component('gridvue2', GridVue2)
 ```
 
-Add these lines on top of your main.js
+Add these lines in your vue file:
 ```vue
 <template>
   <div id="app">
