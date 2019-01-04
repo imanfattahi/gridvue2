@@ -1,0 +1,69 @@
+.gv-table {
+    width: 100%;
+    display: table;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.gv-table.striped tr {
+    border-bottom: none;
+}
+
+.gv-table.striped > tbody > tr:nth-child(odd) {
+    background-color: rgba(242, 242, 242, 0.5);
+}
+
+.gv-table.striped > tbody > tr > td {
+    border-radius: 0;
+}
+
+.gv-table.highlight > tbody > tr {
+    -webkit-transition: background-color .25s ease;
+    transition: background-color .25s ease;
+}
+
+.gv-table.highlight > tbody > tr:hover {
+    background-color: rgba(242, 242, 242, 0.5);
+}
+
+.gv-table.centered thead tr th, table.centered tbody tr td {
+    text-align: center;
+}
+
+.gv-table tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+.gv-table td, .gv-table th {
+    padding: 15px 5px;
+    display: table-cell;
+    text-align: left;
+    vertical-align: middle;
+    border-radius: 2px;
+}
+@media only screen and (max-width: 992px) {
+    .gv-table.responsive-table {
+        width: 100%;
+    }
+}
+
+/* Paginate */
+.gv-paginate {
+    margin: 0;
+    padding: 0;
+}
+.gv-paginate li {
+    list-style: none;
+    display: inline-block;
+}
+.gv-paginate li a {
+    text-decoration: none;
+    padding: 10px;
+}
+.gv-paginate li a.active {
+    background: red;
+    color: white;
+}
+.gv-paginate li a.disable {
+    color: grey;
+    cursor: default;
+}

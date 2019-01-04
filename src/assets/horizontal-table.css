@@ -1,0 +1,58 @@
+.gv-table.responsive-table.horizontal-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: block;
+    position: relative;
+    /* sort out borders */
+}
+.gv-table.responsive-table.horizontal-table td:empty:before {
+    content: '\00a0';
+}
+.gv-table.responsive-table.horizontal-table th,
+.gv-table.responsive-table.horizontal-table td {
+    margin: 0;
+    vertical-align: top;
+}
+.gv-table.responsive-table.horizontal-table th {
+    text-align: left;
+}
+.gv-table.responsive-table.horizontal-table thead {
+    display: block;
+    float: left;
+}
+.gv-table.responsive-table.horizontal-table thead tr {
+    display: block;
+    padding: 0 10px 0 0;
+}
+.gv-table.responsive-table.horizontal-table thead tr th::before {
+    content: "\00a0";
+}
+.gv-table.responsive-table.horizontal-table tbody {
+    display: block;
+    width: auto;
+    position: relative;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+.gv-table.responsive-table.horizontal-table tbody tr {
+    display: inline-block;
+    vertical-align: top;
+}
+.gv-table.responsive-table.horizontal-table th {
+    display: block;
+    text-align: right;
+}
+.gv-table.responsive-table.horizontal-table td {
+    display: block;
+    min-height: 1.25em;
+    text-align: left;
+}
+.gv-table.responsive-table.horizontal-table tr {
+    border-bottom: none;
+    padding: 0 10px;
+}
+.gv-table.responsive-table.horizontal-table thead {
+    border: 0;
+    border-right: 1px solid rgba(0, 0, 0, 0.12);
+}

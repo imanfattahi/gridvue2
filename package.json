@@ -1,11 +1,19 @@
 {
   "name": "gridvue2",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.1.2",
+  "private": false,
+  "main": "./dist/gridvue2.common.js",
+  "module": "./dist/gridvue2.esm.js",
+  "unpkg": "./dist/gridvue2.min.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/imanfattahi/gridvue2.git"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "build-bundle": "vue-cli-service build --target lib --name gridvue2 ./src/main.js"
   },
   "dependencies": {
     "vue": "^2.5.21"
@@ -42,5 +50,12 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
+  ],
+  "files": [
+    "dist/*",
+    "src/*",
+    "public/*",
+    "*.json",
+    "*.js"
   ]
 }
