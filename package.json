@@ -1,6 +1,6 @@
 {
   "name": "gridvue2",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "private": false,
   "main": "./dist/gridvue2.common.js",
   "module": "./dist/gridvue2.esm.js",
@@ -18,11 +18,13 @@
   "keywords": [
     "gridview",
     "gridvue",
+    "gridvue2",
     "table",
     "data-table",
     "ajax-table",
     "searchable"
   ],
+  "description": "GridVue2 is powerfull gridview for vuejs",
   "author": "Iman Fattahi <imanfava@gmail.com>",
   "dependencies": {
     "vue": "^2.5.21"
@@ -66,5 +68,6 @@
     "public/*",
     "*.json",
     "*.js"
-  ]
+  ],
+  "license": "MIT"
 }

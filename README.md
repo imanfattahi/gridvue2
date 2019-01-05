@@ -22,7 +22,11 @@ Add these lines in your vue file:
   </div>
 </template>
 
+<style>
+  @import "~gridvue2/dist/gridvue2.css";
+</style>
 <script>
+
 export default {
   data: function () {
     return {
