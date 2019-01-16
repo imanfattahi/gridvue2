@@ -1,6 +1,6 @@
 {
   "name": "gridvue2",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "private": false,
   "main": "./dist/gridvue2.common.js",
   "module": "./dist/gridvue2.esm.js",
@@ -27,6 +27,8 @@
   "description": "GridVue2 is powerfull gridview for vuejs",
   "author": "Iman Fattahi <imanfava@gmail.com>",
   "dependencies": {
+    "node-sass": "^4.11.0",
+    "sass-loader": "^7.1.0",
     "vue": "^2.5.21"
   },
   "devDependencies": {

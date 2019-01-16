@@ -38,7 +38,6 @@
     display: table-cell;
     text-align: left;
     vertical-align: middle;
-    border-radius: 2px;
 }
 @media only screen and (max-width: 992px) {
     .gv-table.responsive-table {
@@ -58,10 +57,6 @@
 .gv-paginate li a {
     text-decoration: none;
     padding: 10px;
-}
-.gv-paginate li a.active {
-    background: red;
-    color: white;
 }
 .gv-paginate li a.disable {
     color: grey;

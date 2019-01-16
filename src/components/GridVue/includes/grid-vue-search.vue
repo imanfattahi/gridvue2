@@ -1,6 +1,6 @@
 <template>
-    <div v-if="config.search.status">
-        <input type="text" v-model="searchQuery" v-on:keyup="search" v-on:change="search" class="gv-search" placeholder="Search something...">
+    <div v-if="config.search.status" class="gv-search">
+        <input type="text" v-model="searchQuery" v-on:keyup="search" v-on:change="search" :placeholder="config.search.placeholder">
     </div>
 </template>
 

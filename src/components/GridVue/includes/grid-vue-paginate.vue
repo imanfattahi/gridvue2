@@ -3,7 +3,7 @@
         <br>
         <ul class="gv-paginate">
             <li><a :disabled="currentPage == 1" href="" :class="currentPage == 1 ? 'disable' : ''" @click.prevent="previousPage()">&#60;</a></li>
-            <li><a href="" v-for="index in Math.ceil(this.config.paginate.total / this.config.paginate.perPage)" :key="index" :class="currentPage == index ? 'active' : ''" @click.prevent="goToPage(index)">{{ index }}</a></li>
+            <li v-for="index in Math.ceil(this.config.paginate.total / this.config.paginate.perPage)" :key="index"><a href="" :class="currentPage == index ? 'active' : ''" @click.prevent="goToPage(index)">{{ index }}</a></li>
             <li><a :disabled="currentPage == Math.ceil(this.config.paginate.total / this.config.paginate.perPage)" :class="currentPage == Math.ceil(this.config.paginate.total / this.config.paginate.perPage) ? 'disable' : ''" href="" @click.prevent="nextPage()">&#62;</a></li>
         </ul>
     </div>

@@ -1,5 +1,8 @@
 # Gridvue2
 The Gridvue2 is a GridView that view mode displays a list of data items by binding data fields to columns and by displaying a column header to identify the field. The default GridView style implements buttons as column headers. By using buttons for column headers, you can implement important user interaction capabilities; for example, users can click the column header to sort GridView data according to the contents of a specific column.
+
+# Screenshot
+![Default theme screen shot](https://i.ibb.co/7RYQmdp/table-default.jpg)
 ## Installation
 ``` 
 npm install --save gridvue2
@@ -22,11 +25,17 @@ Add these lines in your vue file:
   </div>
 </template>
 
-<style>
-  @import "~gridvue2/dist/gridvue2.css";
-</style>
-<script>
 
+<style lang="scss">
+  @import '~gridvue2/dist/scss/default.scss';
+</style>
+
+<style scoped>
+    @import '~gridvue2/dist/css/GridVue.css';
+    @import '~gridvue2/dist/css/horizontal-table.css';
+</style>
+
+<script>
 export default {
   data: function () {
     return {
@@ -145,6 +154,7 @@ You can do some professional config please pay attention to following table:
 | filter.orderBy.field | Field that you wanna order data depend | String | null |
 | filter.orderBy.ordering | Order data | String ('ASC'/'DESC') | 'ASC' |
 | search.status | Search in data | Boolean | true |
+| search.placeholder | Placeholder for search input | String | Search something... |
 
 Prefix of all the configs are "this.config." for example: this.config.search.status = true
 ### Contact me

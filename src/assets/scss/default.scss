@@ -1,0 +1,110 @@
+.grid-vue {
+  background: whitesmoke;
+  border: 1px solid #e0e0e0;
+  padding: 10px;
+  overflow-x: auto;
+}
+.gv-table {
+  td, th {
+    position: relative;
+  }
+  border: 1px solid #e0e0e0;
+  thead {
+    tr {
+      background: #eee;
+      th {
+
+      }
+      a {
+        color: #3c3c3c;
+      }
+      a:active {
+        color: #66bbff;
+      }
+    }
+  }
+  tbody {
+    tr {
+      background-color: #fff;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+  }
+}
+.gv-table:not(.horizontal-table) tbody {
+  tr:hover {
+    background-color: #66ddff;
+  }
+}
+
+.gv-head {
+  padding: 15px 0px;
+  > div {
+    margin-right: 10px;
+    display: inline-block;
+  }
+  > div:last-child {
+    margin-right: 0px;
+  }
+}
+
+.gv-paginate {
+  text-align: center;
+  li {
+    margin: 10px 0px;
+    a.active {
+      background: #66aaff;
+      color: white;
+    }
+  }
+}
+
+.gv-paginate-select {
+  float: left; /* ltr */
+  select {
+    border: 1px solid #66aaff;
+    width: 38px;
+    height: 38px;
+  }
+}
+
+.gv-total {
+  float: left; /* ltr */
+  span {
+    display: inline-block;
+    background: #66aaff;
+    padding: 10px;
+    color: white;
+  }
+}
+
+.gv-orientation {
+  float: right; /* ltr */
+  button {
+    height: 38px;
+    color: #fff;
+    background-color: #66aaff;
+    border-color: #66bbff;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  }
+}
+
+.gv-search input {
+  border: 1px solid #66aaff;
+  height: 35px;
+  padding: 0 10px;
+}
