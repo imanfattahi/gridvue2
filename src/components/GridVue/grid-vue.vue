@@ -9,7 +9,7 @@
               </select>
             </div>
             <div class="gv-total" v-if="config.showTotal">
-              Total Rows:
+              Total rows:
               <span>{{ config.paginate.total }}</span>
             </div>
             <grid-vue-search :config="setConfig" v-on:Search="search"></grid-vue-search>

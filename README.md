@@ -2,6 +2,7 @@
 The Gridvue2 is a GridView that view mode displays a list of data items by binding data fields to columns and by displaying a column header to identify the field. The default GridView style implements buttons as column headers. By using buttons for column headers, you can implement important user interaction capabilities; for example, users can click the column header to sort GridView data according to the contents of a specific column.
 
 # Screenshot
+[Default theme screen shot link](https://i.ibb.co/7RYQmdp/table-default.jpg)
 ![Default theme screen shot](https://i.ibb.co/7RYQmdp/table-default.jpg)
 ## Installation
 ``` 
@@ -25,14 +26,8 @@ Add these lines in your vue file:
   </div>
 </template>
 
-
-<style lang="scss">
-  @import '~gridvue2/dist/scss/default.scss';
-</style>
-
-<style scoped>
-    @import '~gridvue2/dist/css/GridVue.css';
-    @import '~gridvue2/dist/css/horizontal-table.css';
+<style>
+  @import "~gridvue2/dist/css/gridvue2.css";
 </style>
 
 <script>

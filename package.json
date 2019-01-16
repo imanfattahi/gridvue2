@@ -1,6 +1,6 @@
 {
   "name": "gridvue2",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "private": false,
   "main": "./dist/gridvue2.common.js",
   "module": "./dist/gridvue2.esm.js",
@@ -69,7 +69,8 @@
     "src/*",
     "public/*",
     "*.json",
-    "*.js"
+    "*.js",
+    "*.scss"
   ],
   "license": "MIT"
 }
