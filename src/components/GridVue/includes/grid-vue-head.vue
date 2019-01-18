@@ -2,7 +2,7 @@
     <thead>
     <tr>
         <th v-for="(title, index) in titles" :title="title" :key="index">
-            <a v-if="status" href="" @click="filter($event, title)">
+            <a v-if="status" href="" @click="filter($event, index)">
                 <span v-html="title"></span>
                 <span v-if="orderBy.field != title" style="float: right">
                     ↕
@@ -14,7 +14,7 @@
             </a>
             <span v-else v-html="title"></span>
         </th>
-      <th v-if="config.pick">
+      <th v-if="showOptions">
         <small>Options</small>
       </th>
     </tr>
@@ -28,7 +28,7 @@
       },
       name: "grid-vue-head",
       props: [
-        'config', 'titles'
+        'config', 'titles', 'showOptions', 'fields'
       ],
       data: function () {
         return {
@@ -37,8 +37,9 @@
         }
       },
        methods: {
-        filter (event, field) {
+        filter (event, index) {
           event.preventDefault()
+          let field = this.fields[index]
           if (this.orderBy.field == field) {
             this.orderBy.ordering = this.orderBy.ordering == 'DESC' ? 'ASC' : 'DESC'
           } else {

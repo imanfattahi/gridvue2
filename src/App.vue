@@ -10,9 +10,10 @@ export default {
   name: 'app',
   data: function () {
     return {
-      titles : ['First Name', 'Last Name', 'Company', 'Address', 'City', 'State', 'Post', 'Phone 1'],
+      titles : ['First Name', 'Last Name', 'Company', 'Address', 'City', 'State', 'Post', 'Phone'],
       config: {
         showTotal: true,
+        print: true,
         pick: true,
         editable: true,
         editableFields: [],

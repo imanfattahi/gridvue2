@@ -3,14 +3,16 @@
     <tr v-for="(item, index) in picked" v-bind:key="index + Math.random()" class="gv-picked">
       <td v-for="(field, idx) in fields" v-bind:key="idx">{{ item[field] }}</td>
       <td>
-        <button @click="drop(index)" type="button" class="gv-button">Picked</button>
+        <button @click="drop(index)" type="button" class="gv-btn gv-btn-small gv-picked-btn">Picked</button>
       </td>
     </tr>
     <tr v-for="(item, index) in items" v-bind:key="index">
         <td v-for="(field, idx) in fields" v-bind:key="idx">{{ item[field] }}</td>
       <!-- Picked-->
-      <td v-if="config.pick">
-        <button @click="pick(item)" type="button" class="gv-button">Pick</button>
+      <td v-if="showOptions">
+        <button v-if="config.pick" title="Pick" @click="pick(item)" type="button" class="gv-btn gv-btn-small gv-pick-btn">Pick</button>
+        <button v-if="config.editable" title="Edit" @click="edit(item, index)" type="button" class="gv-btn gv-btn-small gv-edit-btn">Edit</button>
+        <button v-if="config.removable" title="Remove" @click="remove(item, index)" type="button" class="gv-btn gv-btn-small gv-remove-btn">Remove</button>
       </td>
     </tr>
     </tbody>
@@ -23,7 +25,7 @@
       },
         name: "grid-vue-items",
         props: [
-            'config', 'items', 'fields'
+            'config', 'items', 'fields', 'showOptions'
         ],
       data: function () {
         return {
@@ -36,6 +38,12 @@
         },
         drop (index) {
           this.picked.splice(index, 1)
+        },
+        remove (item, index) {
+
+        },
+        edit (item, index) {
+
         }
       }
     }

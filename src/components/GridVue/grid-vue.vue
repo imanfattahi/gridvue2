@@ -13,16 +13,16 @@
               <span>{{ config.paginate.total }}</span>
             </div>
             <grid-vue-search :config="setConfig" v-on:Search="search"></grid-vue-search>
-            <div class="gv-orientation">
-              <button type="button" @click="changeOrientation">
+            <div v-if="config.theme.orientation != undefined && config.theme.orientation !== ''" class="gv-orientation">
+              <button type="button" @click="changeOrientation" class="gv-btn gv-orientation-btn">
                 <span v-if="config.theme.orientation == 'vertical'">Horizontal</span>
                 <span v-else-if="config.theme.orientation == 'horizontal'">Vertical</span>
               </button>
             </div>
           </div>
             <table class="gv-table responsive-table" :class="tableClasses">
-                <grid-vue-head :titles="titles" :config="setConfig" v-on:Filter="filter"></grid-vue-head>
-                <grid-vue-items :fields="fields" :items="!this.config.paginate.status ? list : list.slice(this.config.paginate.perPage * (this.config.paginate.currentPage - 1), this.config.paginate.perPage * this.config.paginate.currentPage) " :config="setConfig"></grid-vue-items>
+                <grid-vue-head :showOptions="showOptions" :titles="titles" :fields="fields" :config="setConfig" v-on:Filter="filter"></grid-vue-head>
+                <grid-vue-items :showOptions="showOptions" :fields="fields" :items="!this.config.paginate.status ? list : list.slice(this.config.paginate.perPage * (this.config.paginate.currentPage - 1), this.config.paginate.perPage * this.config.paginate.currentPage) " :config="setConfig"></grid-vue-items>
             </table>
             <grid-vue-paginate :config="setConfig" @SetPage="setPage"></grid-vue-paginate>
         </div>
@@ -62,7 +62,7 @@
         config: {
           numbering: true,
           showTotal: true,
-          pick: true, // Pick or favorite show in all search result and filter dose not change the sort of these items
+          pick: true,
           editable: true,
           editableFields: [],
           removable: true,
@@ -152,6 +152,15 @@
       }
     },
     computed: {
+      showOptions () {
+        if (this.config.removable)
+          return true;
+        if (this.config.editable)
+          return true;
+        if (this.config.pick)
+          return true;
+        return false;
+      },
       tableClasses () {
         let classes = '';
         classes += this.config.theme.orientation == 'horizontal' ? 'horizontal-table' : ''
