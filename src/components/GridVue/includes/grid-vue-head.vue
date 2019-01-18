@@ -14,6 +14,9 @@
             </a>
             <span v-else v-html="title"></span>
         </th>
+      <th v-if="config.pick">
+        <small>Options</small>
+      </th>
     </tr>
     </thead>
 </template>

@@ -10,7 +10,7 @@ export default {
   name: 'app',
   data: function () {
     return {
-      titles : ['First Name', 'Last Name', 'Company', 'Address', 'City', 'State', 'Post', 'Phone 1', 'Phone 2'],
+      titles : ['First Name', 'Last Name', 'Company', 'Address', 'City', 'State', 'Post', 'Phone 1'],
       config: {
         showTotal: true,
         pick: true,
@@ -55,8 +55,7 @@ export default {
           "city": "Leith",
           "state": "TAS",
           "post": 7315,
-          "phone1": "03-8174-9123",
-          "phone2": "0458-665-290"
+          "phone": "03-8174-9123"
         },
         {
           "first_name": "Stevie",
@@ -66,8 +65,7 @@ export default {
           "city": "Proston",
           "state": "QLD",
           "post": 4613,
-          "phone1": "07-9997-3366",
-          "phone2": "0497-622-620"
+          "phone": "07-9997-3366"
         },
         {
           "first_name": "Mariko",
@@ -77,8 +75,7 @@ export default {
           "city": "Hamel",
           "state": "WA",
           "post": 6215,
-          "phone1": "08-5558-9019",
-          "phone2": "0427-885-282"
+          "phone": "08-5558-9019"
         },
         {
           "first_name": "Gerardo",
@@ -88,8 +85,7 @@ export default {
           "city": "Talmalmo",
           "state": "NSW",
           "post": 2640,
-          "phone1": "02-6044-4682",
-          "phone2": "0443-795-912"
+          "phone": "02-6044-4682"
         },
         {
           "first_name": "Mayra",
@@ -99,8 +95,7 @@ export default {
           "city": "Lane Cove",
           "state": "NSW",
           "post": 1595,
-          "phone1": "02-1455-6085",
-          "phone2": "0453-666-885"
+          "phone": "02-1455-6085"
         },
         {
           "first_name": "Idella",
@@ -110,8 +105,7 @@ export default {
           "city": "Cartmeticup",
           "state": "WA",
           "post": 6316,
-          "phone1": "08-7868-1355",
-          "phone2": "0451-966-921"
+          "phone": "08-7868-1355"
         },
         {
           "first_name": "Sherill",
@@ -121,8 +115,7 @@ export default {
           "city": "Nyamup",
           "state": "WA",
           "post": 6258,
-          "phone1": "08-6522-8931",
-          "phone2": "0427-991-688"
+          "phone": "08-6522-8931"
         },
         {
           "first_name": "Ena",
@@ -132,8 +125,7 @@ export default {
           "city": "Bendick Murrell",
           "state": "NSW",
           "post": 2803,
-          "phone1": "02-5226-9402",
-          "phone2": "0415-961-606"
+          "phone": "02-5226-9402"
         },
         {
           "first_name": "Vince",
@@ -143,8 +135,7 @@ export default {
           "city": "Purrawunda",
           "state": "QLD",
           "post": 4356,
-          "phone1": "07-3184-9989",
-          "phone2": "0411-732-965"
+          "phone": "07-3184-9989"
         },
         {
           "first_name": "Theron",
@@ -154,8 +145,7 @@ export default {
           "city": "Blanchetown",
           "state": "SA",
           "post": 5357,
-          "phone1": "08-6890-4661",
-          "phone2": "0461-862-457"
+          "phone": "08-6890-4661"
         },
         {
           "first_name": "Amira",
@@ -165,8 +155,7 @@ export default {
           "city": "Rockside",
           "state": "QLD",
           "post": 4343,
-          "phone1": "07-8135-3271",
-          "phone2": "0478-867-289"
+          "phone": "07-8135-3271"
         },
         {
           "first_name": "Marica",
@@ -176,8 +165,7 @@ export default {
           "city": "Rosegarland",
           "state": "TAS",
           "post": 7140,
-          "phone1": "03-1174-6817",
-          "phone2": "0494-982-617"
+          "phone": "03-1174-6817"
         },
 
       ]
