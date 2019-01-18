@@ -22,8 +22,9 @@ export default {
           caching: true,
           rtl: false,
           hoverable: true,
+          zebra: true,
           orientation: 'vertical',
-          gridViewClass: ''
+          classes: ''
         },
         paginate: {
           status: true,

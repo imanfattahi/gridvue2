@@ -1,5 +1,5 @@
 <template>
-    <div class="grid-vue" :class="config.theme.gridViewClass">
+    <div class="grid-vue" :class="config.theme.classes">
         <div v-if="Items.length">
           <div class="gv-head">
             <div v-if="config.paginate.perPageSelectable" class="gv-paginate-select">
@@ -20,7 +20,7 @@
               </button>
             </div>
           </div>
-            <table class="gv-table responsive-table" :class="config.theme.orientation == 'horizontal' ? 'horizontal-table' : ''">
+            <table class="gv-table responsive-table" :class="tableClasses">
                 <grid-vue-head :titles="titles" :config="setConfig" v-on:Filter="filter"></grid-vue-head>
                 <grid-vue-items :fields="fields" :items="!this.config.paginate.status ? list : list.slice(this.config.paginate.perPage * (this.config.paginate.currentPage - 1), this.config.paginate.perPage * this.config.paginate.currentPage) " :config="setConfig"></grid-vue-items>
             </table>
@@ -72,8 +72,9 @@
             caching: true,
             rtl: false,
             hoverable: true,
+            zebra: true,
             orientation: 'vertical',
-            gridViewClass: ''
+            classes: ''
           },
           paginate: {
             status: true,
@@ -151,6 +152,13 @@
       }
     },
     computed: {
+      tableClasses () {
+        let classes = '';
+        classes += this.config.theme.orientation == 'horizontal' ? 'horizontal-table' : ''
+        classes += this.config.theme.hoverable == true ? ' hoverable' : ''
+        classes += this.config.theme.zebra == true ? ' zebra' : ''
+        return classes
+      },
         setConfig: function () {
             return this.config
         },

@@ -27,12 +27,12 @@
     tr {
       background-color: #fff;
     }
-    tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
   }
 }
-.gv-table:not(.horizontal-table) tbody {
+.gv-table.zebra tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+.gv-table.hoverable:not(.horizontal-table) tbody {
   tr:hover {
     background-color: #66ddff;
   }
