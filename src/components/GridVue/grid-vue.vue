@@ -22,7 +22,13 @@
           </div>
             <table class="gv-table responsive-table" :class="tableClasses">
                 <grid-vue-head :showOptions="showOptions" :titles="titles" :fields="fields" :config="setConfig" v-on:Filter="filter"></grid-vue-head>
-                <grid-vue-items :showOptions="showOptions" :fields="fields" :items="!this.config.paginate.status ? list : list.slice(this.config.paginate.perPage * (this.config.paginate.currentPage - 1), this.config.paginate.perPage * this.config.paginate.currentPage) " :config="setConfig"></grid-vue-items>
+                <grid-vue-items
+                  :functions="this.Functions"
+                  :showOptions="showOptions"
+                  :fields="fields"
+                  :model="this.Items"
+                  :items="!this.config.paginate.status ? list : list.slice(this.config.paginate.perPage * (this.config.paginate.currentPage - 1), this.config.paginate.perPage * this.config.paginate.currentPage) "
+                  :config="setConfig"></grid-vue-items>
             </table>
             <grid-vue-paginate :config="setConfig" @SetPage="setPage"></grid-vue-paginate>
         </div>
@@ -43,7 +49,7 @@
     name: "gridvue2",
     components: {GridVueItems, GridVueHead, GridVueSearch, GridVuePaginate},
     props: [
-      'Items', 'Config', 'Titles'
+      'Items', 'Config', 'Titles', 'Functions'
     ],
     beforeMount: function () {
       Object.assign(this.titles, this.Titles)

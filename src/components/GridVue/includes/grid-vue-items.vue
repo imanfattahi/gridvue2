@@ -7,7 +7,7 @@
       </td>
     </tr>
     <tr v-for="(item, index) in items" v-bind:key="index">
-        <td v-for="(field, idx) in fields" v-bind:key="idx">{{ item[field] }}</td>
+        <td v-for="(field, idx) in fields" v-bind:key="idx">{{ tdValue(item, field) }}</td>
       <!-- Picked-->
       <td v-if="showOptions">
         <button v-if="config.pick" title="Pick" @click="pick(item)" type="button" class="gv-btn gv-btn-small gv-pick-btn">Pick</button>
@@ -25,7 +25,7 @@
       },
         name: "grid-vue-items",
         props: [
-            'config', 'items', 'fields', 'showOptions'
+            'config', 'items', 'fields', 'showOptions', 'functions', 'model'
         ],
       data: function () {
         return {
@@ -44,6 +44,13 @@
         },
         edit (item, index) {
 
+        },
+        tdValue (item, field) {
+          if (this.functions.hasOwnProperty(field)) {
+            return this.functions[field](item, this.model)
+          } else {
+            return item[field]
+          }
         }
       }
     }

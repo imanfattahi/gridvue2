@@ -1,6 +1,6 @@
 <template>
   <div id="app" class="test-app">
-    <gridvue2 :Items="items" :Config="config" :Titles="titles"></gridvue2>
+    <gridvue2 :Items="items" :Config="config" :Titles="titles" :Functions="functions"></gridvue2>
   </div>
 </template>
 
@@ -10,7 +10,12 @@ export default {
   name: 'app',
   data: function () {
     return {
-      titles : ['First Name', 'Last Name', 'Company', 'Address', 'City', 'State', 'Post', 'Phone'],
+      titles: ['First Name', 'Last Name', 'Company', 'Address', 'City', 'State', 'Post', 'Phone'],
+      functions: {
+        first_name: function (item, model) {
+          return item.first_name.toUpperCase()
+        }
+      },
       config: {
         showTotal: true,
         print: true,
