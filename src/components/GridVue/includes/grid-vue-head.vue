@@ -4,10 +4,10 @@
         <th v-for="(title, index) in titles" :title="title" :key="index">
             <a v-if="status" href="" @click="filter($event, index)">
                 <span v-html="title"></span>
-                <span v-if="orderBy.field != title" style="float: right">
+                <span v-if="orderBy.field != getFieldByTitle(title)" style="float: right">
                     ↕
                 </span>
-                <span v-else-if="orderBy.field == title" style="float: right">
+                <span v-else-if="orderBy.field == getFieldByTitle(title)" style="float: right">
                     <strong v-if="orderBy.ordering == 'ASC'">↑</strong>
                     <strong v-else>↓</strong>
                 </span>
@@ -47,7 +47,15 @@
           }
           this.orderBy.field = field
           this.$emit('Filter', this.orderBy)
-        }
+        },
+         getFieldByTitle (title) {
+          if (!this.fields.length) {
+            return title;
+          } else {
+            let index = this.titles.indexOf(title);
+            return this.fields[index];
+          }
+         }
        }
     }
 </script>
