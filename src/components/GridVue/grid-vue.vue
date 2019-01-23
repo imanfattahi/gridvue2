@@ -1,6 +1,6 @@
 <template>
     <div class="grid-vue" :class="config.theme.classes">
-        <div v-if="Items.length">
+        <div v-if="items.length">
           <div class="gv-head">
             <div v-if="config.paginate.perPageSelectable" class="gv-paginate-select">
               Per Page:
@@ -23,6 +23,7 @@
             <table class="gv-table responsive-table" :class="tableClasses">
                 <grid-vue-head :showOptions="showOptions" :titles="titles" :fields="fields" :config="setConfig" v-on:Filter="filter"></grid-vue-head>
                 <grid-vue-items
+                  v-on:Remove="remove"
                   :functions="this.Functions"
                   :showOptions="showOptions"
                   :fields="fields"
@@ -55,13 +56,13 @@
       Object.assign(this.titles, this.Titles)
       this.config = this.overrideObject(this.config, this.Config)
       Object.getOwnPropertyNames(this.titles)
-      this.config.paginate.total = this.list.length
-      this.config.paginate.totalPage = Math.ceil(this.config.paginate.total / this.config.paginate.perPage)
-      this.fields = this.Items[0]  ? Object.keys(this.Items[0]) : [];
+      this.calculatePaginate()
+      this.fields = this.list[0]  ? Object.keys(this.list[0]) : [];
       this.titles = (this.titles.length && this.titles[0] !== '') ? this.titles : this.fields;
     },
     data: function () {
       return {
+        items: Object.assign([], this.Items),
         list: this.Items,
         titles : [],
         fields: [],
@@ -125,8 +126,9 @@
         this.config.theme.orientation = this.config.theme.orientation == 'horizontal' ? 'vertical' : 'horizontal'
       },
       search (searchQuery) {
+        searchQuery = searchQuery.trim()
         this.setPage(1)
-          this.list = this.Items.filter(item => {
+          this.list = this.items.filter(item => {
             return Object.keys(item).some(function (key) {
               return String(item[key]).toLowerCase().indexOf(searchQuery.toLowerCase()) > -1
             })
@@ -140,7 +142,7 @@
         var key = orderBy ? orderBy.field : this.config.filter.orderBy.field
         var ordering = orderBy ? orderBy.ordering : this.config.filter.orderBy.ordering
         if (ordering == '') {
-          this.list = this.Items
+          this.list = this.items
         }
           this.list.sort(function(a, b) {
             var x = a[key];
@@ -153,8 +155,20 @@
           });
         return false
       },
+      remove (item, index) {
+        this.list.splice(index, 1)
+        this.items.splice(this.items.indexOf(item), 1)
+        this.calculatePaginate();
+        if (this.config.paginate.currentPage > this.config.paginate.totalPage)
+          if (this.config.paginate.currentPage > 1)
+            this.config.paginate.currentPage--;
+      },
       setPage (page) {
         this.config.paginate.currentPage = page
+      },
+      calculatePaginate: function () {
+        this.config.paginate.total = this.setTotal
+        this.config.paginate.totalPage = this.setTotalPage
       }
     },
     computed: {
@@ -174,18 +188,24 @@
         classes += this.config.theme.zebra == true ? ' zebra' : ''
         return classes
       },
-        setConfig: function () {
-            return this.config
-        },
+      setConfig: function () {
+          return this.config
+      },
       setPerPage: function () {
         return this.config.paginate.perPage
+      },
+      setTotalPage: function () {
+        return Math.ceil(this.config.paginate.total / this.config.paginate.perPage)
+      },
+      setTotal: function () {
+        return this.list.length
       }
-    }
-    ,
+    },
     watch: {
       setPerPage: function () {
         this.config.paginate.currentPage = 1
       }
+
     }
   }
 </script>

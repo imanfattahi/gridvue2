@@ -40,7 +40,7 @@
           this.picked.splice(index, 1)
         },
         remove (item, index) {
-
+          this.$emit('Remove', item, index)
         },
         edit (item, index) {
 
