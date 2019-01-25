@@ -17,6 +17,7 @@ export default {
         }
       },
       config: {
+        id: 'gv1',
         showTotal: true,
         print: true,
         pick: true,
@@ -34,7 +35,7 @@ export default {
         },
         paginate: {
           status: true,
-          perPage: 10,
+          perPage: 20,
           perPageValues: [5, 10, 20 ,50 , 100],
           perPageSelectable: true,
           totalPage: 0,

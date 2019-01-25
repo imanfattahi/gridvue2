@@ -1,5 +1,5 @@
 <template>
-    <div class="grid-vue" :class="config.theme.classes">
+    <div class="grid-vue" :class="config.theme.classes" :id="config.id">
         <div v-if="items.length">
           <div class="gv-head">
             <!-- Count of rows in each page -->
@@ -75,6 +75,8 @@
       this.calculatePaginate()
       this.fields = this.list[0]  ? Object.keys(this.list[0]) : [];
       this.titles = (this.titles.length && this.titles[0] !== '') ? this.titles : this.fields;
+      /* Cookie */
+      this.setInitalCookies()
     },
     data: function () {
       return {
@@ -83,16 +85,19 @@
         titles : [],
         fields: [],
         config: {
+          id: '',
           numbering: true,
           showTotal: true,
           pick: true,
           editable: true,
           editableFields: [],
           removable: true,
+          removeConfirm: true,
           multipleRemove: true,
+          cookie: true,
+          cookieExpire: 7, /* Days */
           theme: {
             name: 'default',
-            caching: true,
             rtl: false,
             hoverable: true,
             zebra: true,
@@ -120,7 +125,8 @@
             placeholder: 'Search something...',
             searchableFields: []
           },
-        }
+        },
+        cookiePrefix: 'gv-'
       }
     },
     methods: {
@@ -135,11 +141,11 @@
             if(typeof o2[a] != 'undefined') res[a] = o2[a];
           }
         }
-
         return res;
       },
       changeOrientation () {
         this.config.theme.orientation = this.config.theme.orientation == 'horizontal' ? 'vertical' : 'horizontal'
+        this.setCookie(this.config.id + '-orientation',this.config.theme.orientation == 'horizontal' ? 'horizontal' : 'vertical' , this.config.cookieExpire)
       },
       search (searchQuery) {
         searchQuery = searchQuery.trim()
@@ -160,15 +166,16 @@
         if (ordering == '') {
           this.list = this.items
         }
-          this.list.sort(function(a, b) {
-            var x = a[key];
-            var y = b[key];
-            if (ordering == 'DESC') {
-              return ((x > y) ? -1 : ((x < y) ? 1 : 0));
-            } else {
-              return ((x < y) ? -1 : ((x > y) ? 1 : 0));
-            }
-          });
+        this.list.sort(function(a, b) {
+          var x = a[key];
+          var y = b[key];
+          if (ordering == 'DESC') {
+            return ((x > y) ? -1 : ((x < y) ? 1 : 0));
+          } else {
+            return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+          }
+        });
+        this.setCookie(this.config.id + '-orderBy',  JSON.stringify({field: key, ordering: ordering}), this.config.cookieExpire)
         return false
       },
       remove (item, index) {
@@ -185,6 +192,47 @@
       calculatePaginate: function () {
         this.config.paginate.total = this.setTotal
         this.config.paginate.totalPage = this.setTotalPage
+      },
+      setInitalCookies () {
+        if (this.config.cookie) {
+          if (this.checkCookie(this.config.id + "-orientation")) {
+            this.config.theme.orientation = this.getCookie(this.config.id + "-orientation")
+          }
+          if (this.checkCookie(this.config.id + "-orderBy")) {
+            this.filter(JSON.parse(this.getCookie(this.config.id + "-orderBy")))
+          }
+          if (this.checkCookie(this.config.id + "-perPage")) {
+            this.config.paginate.perPage = this.getCookie(this.config.id + "-perPage")
+          }
+        }
+      },
+      setCookie (cname, cvalue, exdays) {
+        var d = new Date();
+        d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+        var expires = "expires="+d.toUTCString();
+        document.cookie = this.cookiePrefix + cname + "=" + cvalue + ";" + expires + ";path=/";
+      },
+      getCookie (cname) {
+        var name = this.cookiePrefix + cname + "=";
+        var ca = document.cookie.split(';');
+        for(var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+      },
+      checkCookie (name) {
+        var cookie = this.getCookie(name)
+        if (cookie != "") {
+          return true
+        } else {
+          return false
+        }
       }
     },
     computed: {
@@ -219,9 +267,9 @@
     },
     watch: {
       setPerPage: function () {
+        this.setCookie(this.config.id + "-perPage", this.config.paginate.perPage, this.config.cookieExpire)
         this.config.paginate.currentPage = 1
       }
-
     }
   }
 </script>
