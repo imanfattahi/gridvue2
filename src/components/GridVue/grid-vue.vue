@@ -2,17 +2,23 @@
     <div class="grid-vue" :class="config.theme.classes">
         <div v-if="items.length">
           <div class="gv-head">
+            <!-- Count of rows in each page -->
             <div v-if="config.paginate.perPageSelectable" class="gv-paginate-select">
               Per Page:
               <select v-model="config.paginate.perPage" :value="setPerPage">
                 <option v-for="(value, index) in config.paginate.perPageValues" :key="index">{{ value }}</option>
               </select>
             </div>
+            <!-- Total rows -->
             <div class="gv-total" v-if="config.showTotal">
               Total rows:
               <span>{{ config.paginate.total }}</span>
             </div>
-            <grid-vue-search :config="setConfig" v-on:Search="search"></grid-vue-search>
+            <!-- Search -->
+            <grid-vue-search
+              :config="setConfig"
+              v-on:Search="search"></grid-vue-search>
+            <!-- Orientation -->
             <div v-if="config.theme.orientation != undefined && config.theme.orientation !== ''" class="gv-orientation">
               <button type="button" @click="changeOrientation" class="gv-btn gv-orientation-btn">
                 <span v-if="config.theme.orientation == 'vertical'">Horizontal</span>
@@ -20,8 +26,15 @@
               </button>
             </div>
           </div>
+          <!-- Table -->
             <table class="gv-table responsive-table" :class="tableClasses">
-                <grid-vue-head :showOptions="showOptions" :titles="titles" :fields="fields" :config="setConfig" v-on:Filter="filter"></grid-vue-head>
+                <!-- Header of table - Titles -->
+                <grid-vue-head
+                  :showOptions="showOptions"
+                  :titles="titles" :fields="fields"
+                  :config.sync="setConfig"
+                  v-on:Filter="filter"></grid-vue-head>
+                <!-- Rows - Data -->
                 <grid-vue-items
                   v-on:Remove="remove"
                   :functions="this.Functions"
@@ -29,9 +42,12 @@
                   :fields="fields"
                   :model="this.Items"
                   :items="!this.config.paginate.status ? list : list.slice(this.config.paginate.perPage * (this.config.paginate.currentPage - 1), this.config.paginate.perPage * this.config.paginate.currentPage) "
-                  :config="setConfig"></grid-vue-items>
+                  :config.sync="setConfig"></grid-vue-items>
             </table>
-            <grid-vue-paginate :config="setConfig" @SetPage="setPage"></grid-vue-paginate>
+            <!-- Paginate -->
+            <grid-vue-paginate
+              :config.sync="setConfig"
+              @SetPage="setPage"></grid-vue-paginate>
         </div>
         <div v-else>
             <p>
