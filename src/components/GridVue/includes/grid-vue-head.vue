@@ -2,13 +2,13 @@
     <thead>
     <tr>
         <th v-for="(title, index) in titles" :title="title" :key="index">
-            <a v-if="status" href="" @click="filter($event, index)">
+            <a v-if="config.filter.status" href="" @click="filter($event, index)">
                 <span v-html="title"></span>
-                <span v-if="orderBy.field != getFieldByTitle(title)" style="float: right">
+                <span v-if="config.filter.orderBy.field != getFieldByTitle(title)" style="float: right">
                     ↕
                 </span>
-                <span v-else-if="orderBy.field == getFieldByTitle(title)" style="float: right">
-                    <strong v-if="orderBy.ordering == 'ASC'">↑</strong>
+                <span v-else-if="config.filter.orderBy.field == getFieldByTitle(title)" style="float: right">
+                    <strong v-if="config.filter.orderBy.ordering == 'ASC'">↑</strong>
                     <strong v-else>↓</strong>
                 </span>
             </a>
@@ -23,8 +23,8 @@
 
 <script>
     export default {
-      beforeMount: function () {
-
+      created: function () {
+        console.log(this.config.filter.orderBy.field)
       },
       name: "grid-vue-head",
       props: [
@@ -32,21 +32,20 @@
       ],
       data: function () {
         return {
-          status: this.config.filter.status,
-          orderBy: this.config.filter.orderBy
+
         }
       },
        methods: {
         filter (event, index) {
           event.preventDefault()
           let field = this.fields[index]
-          if (this.orderBy.field == field) {
-            this.orderBy.ordering = this.orderBy.ordering == 'DESC' ? 'ASC' : 'DESC'
+          if (this.config.filter.orderBy.field == field) {
+            this.config.filter.orderBy.ordering = (this.config.filter.orderBy.ordering == 'DESC' ? 'ASC' : 'DESC')
           } else {
-            this.orderBy.ordering = 'ASC'
+            this.config.filter.orderBy.ordering = 'ASC'
           }
-          this.orderBy.field = field
-          this.$emit('Filter', this.orderBy)
+          this.config.filter.orderBy.field = field
+          this.$emit('Filter', this.config.filter.orderBy)
         },
          getFieldByTitle (title) {
           if (!this.fields.length) {

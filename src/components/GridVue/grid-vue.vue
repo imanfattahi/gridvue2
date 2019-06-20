@@ -130,19 +130,6 @@
       }
     },
     methods: {
-      overrideObject (o1,o2){
-        var res = {};
-        for (var a in o1){
-          if(typeof o1[a] == 'object'){
-            res[a] = this.overrideObject(o1[a],o2[a])
-          }
-          else{
-            res[a] = o1[a];
-            if(typeof o2[a] != 'undefined') res[a] = o2[a];
-          }
-        }
-        return res;
-      },
       changeOrientation () {
         this.config.theme.orientation = this.config.theme.orientation == 'horizontal' ? 'vertical' : 'horizontal'
         this.setCookie(this.config.id + '-orientation',this.config.theme.orientation == 'horizontal' ? 'horizontal' : 'vertical' , this.config.cookieExpire)
@@ -233,6 +220,19 @@
         } else {
           return false
         }
+      },
+      overrideObject (o1,o2){
+        var res = {};
+        for (var a in o1){
+          if(typeof o1[a] == 'object'){
+            res[a] = this.overrideObject(o1[a],o2[a])
+          }
+          else{
+            res[a] = o1[a];
+            if(typeof o2[a] != 'undefined') res[a] = o2[a];
+          }
+        }
+        return res;
       }
     },
     computed: {
